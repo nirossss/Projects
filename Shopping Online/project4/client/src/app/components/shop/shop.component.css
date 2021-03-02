@@ -1,0 +1,94 @@
+.shopContainer {
+    display: flex;
+    justify-content: space-around;
+}
+
+.userCart {
+    height: fit-content;
+    border: 1px solid rgb(184, 184, 184);
+    border-radius: 3px;
+    padding: 5px;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.cartNav{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.productsContainer{
+    width: 70%;
+    height: auto;
+    padding: 5px;
+    min-height: 300px;
+    max-height: 500px;
+    border: 1px solid rgb(184, 184, 184);
+    border-radius: 3px;
+    overflow-y: auto;
+}
+
+.productsContainer form{
+    margin: 5px;
+}
+
+
+.categories ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.categories ul li{
+    float: left;
+}
+
+.categories button:focus{
+    color: blue;
+}
+
+.productsCategoryTitle{
+    text-align: center;
+}
+
+.userCart {
+    position: relative;
+}
+
+.bottomCart {
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.productImageCart img{
+    width: 30px;
+    height: 25px;
+}
+
+.markProduct {
+    background-color: yellow;
+}
+
+.orderContainer{
+    width: 70%;
+    height: 500px;
+}
+
+.orderInput{
+    width: 75%;
+}
+
+.errorDiv{
+    display: inline-block;
+    margin-top: 8px;
+    width: 75%;
+    padding-top: 8px;
+    border: 1px solid #e94747;
+    border-radius: 2px;
+    align-self: center;
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+    <title>My Crypto coins</title>
+</head>
+<!-- header of page -->
+<body style="height: 1000px;">
+    <div class="row jumbotron header">
+        <div class="col-12 my-2">
+            <h1>CryptoCoins</h1>
+        </div>
+    </div>
+<!-- navigation bar of page -->
+    <nav class="navbar navbar-expand-sm navbar-light bg-light" id="largeNav">
+        <div class="navbar-collapse" id="navbarColor03">
+            <ul class="navbar-nav mr-auto list-inline">
+                <li class="nav-item list-inline-item">
+                    <button class="btn btn-secondary nav-link" id="navHome">Home</button>
+                </li>
+                <li class="nav-item list-inline-item">
+                    <button class="btn btn-secondary nav-link" id="navReports">Live reports</button>
+                </li>
+                <li class="nav-item list-inline-item">
+                    <button class="btn btn-secondary nav-link" id="navAbout">About</button>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" id="searchInput" type="text" placeholder="Search">
+                <button class="btn btn-secondary my-2 my-sm-0" id="navSearch" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+<!-- navigation for phone size screens -->
+    <div class="container" id="phoneNav">
+        <div class="row">
+            <div class="col-4 my-1">
+                <button class="btn btn-secondary nav-link" id="navHome" ><i class="fa fa-home fa-3x"></i></button>
+            </div>
+            <div class="col-4 my-1">
+                <button class="btn btn-secondary nav-link" id="navReports"><i class="fa fa-line-chart fa-3x"></i></button>
+            </div>
+            <div class="col-4 my-1">
+                <button class="btn btn-secondary nav-link" id="navAbout"><i class="fa fa-info fa-3x"></i></button>
+            </div>
+            <div class="col-9 my-2">
+                <input class="form-control" type="text" id="searchInputP" placeholder="Search">
+            </div>
+            <div class="col-3 my-2">
+                <button class="btn btn-secondary" id="navSearchP" type="submit"><i class="fa fa-search"></i></button>
+            </div>
+        </div>
+    </div>
+<!-- show loading on ajax panding, display: none; as default -->
+    <div id="wait"><img src="img/1001.gif" alt=""></div>
+<!-- container of page: for new coin cards, saved coins. his content can be change by client nav pick -->
+    <div class="container my-5" id="mainContainer">
+        <div class="row" id="savedCards"></div>
+        <div class="row" id="cardLoad"></div>
+    </div>
+    <div class="jumbotron" id="switchCards">
+        <h6>You chose more than 5 cards. Please remove one or cancel changes</h6>
+        <div class="row" id="liveCards"></div>
+        <div class="row">
+            <div class="col-6">
+                <button class="btn btn-success" id="confirmSwitch">Confirm</button>
+            </div>
+            <div class="col-6">
+                <button class="btn btn-danger" id="cancelSwitch">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+    <script src="scripts/main.js"></script>
+</body>
+</html>

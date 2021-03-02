@@ -1,0 +1,8 @@
+https://api.coingecko.com/api/v3/coins/bitcoin // api for coins details exampel bitcoin (the id)
+//in json// data_market.current_price.usd // get the coin price in usd
+
+https://canvasjs.com/jquery-charts/ //creating jq charts
+
+https://min-api.cryptocompare.com/data/pricemulti?fsyms=ETH,BTC&tsyms=USD // comparing bitcoin in usd to eth in usd
+
+working: MBIT,RDN,SUPER,LGO,SWM

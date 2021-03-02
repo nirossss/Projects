@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cerulean/bootstrap.min.css">
+    <title>Api doc</title>
+
+    <style>
+        .container {
+            text-align: center;
+
+        }
+
+        table {
+            display: inline;
+        }
+
+        th,
+        td {
+            border: 1px solid rgb(182, 182, 182);
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>Api doc project 4</h1><br>
+        <h2>Student Id: 302761580</h2>
+        <table class="table table-hover">
+            <thead>
+                <tr class="table-active">
+                    <th>
+                        <strong>Description </strong>
+                    </th>
+                    <th>
+                        <strong>Method + path </strong>
+                    </th>
+                    <th>
+                        <strong>Request</strong>
+                    </th>
+                    <th>
+                        <strong>Response</strong>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="table-primary">
+                    <td>
+                        Verify user after login.
+                    </td>
+                    <td>
+                        GET <br> /api/auth/verify
+                    </td>
+                    <td>
+                        None
+                    </td>
+                    <td>
+                        {<br>
+                        success: Boolean,<br>
+                        msg: String, <br>
+                        user_data: { <br>
+                        first_name: String, <br>
+                        last_name: String, <br>
+                        city: String, <br>
+                        street: String <br>
+                        }}
+                    </td>
+                </tr>
+                <tr class="table-primary">
+                    <td>
+                        Verify admin after login.
+                    </td>
+                    <td>
+                        GET <br> /api/auth/admin
+                    </td>
+                    <td>
+                        None
+                    </td>
+                    <td>
+                        {<br>
+                        success: Boolean,<br>
+                        msg: String <br>
+                        user_data: { <br>
+                        first_name: String, <br>
+                        last_name: String <br>
+                        }}
+                    </td>
+                </tr>
+                <tr class="table-primary">
+                    <td>
+                        Send the amount of pruducts and orders from Data base.
+                    </td>
+                    <td>
+                        GET <br> /api/home
+                    </td>
+                    <td>
+                        None
+                    </td>
+                    <td>
+                        {<br>
+                        success: Boolean,<br>
+                        orders_placed: Number <br>
+                        available_products: Number <br>
+                        }
+                    </td>
+                </tr>
+                <tr class="table-success">
+                    <td>
+                        Register first step. <br>
+                        Verifies user_id and email dosent exists in data base.
+                    </td>
+                    <td>
+                        POST <br> /api/register/firstStep
+                    </td>
+                    <td>
+                        { <br>
+                        user_id: Number, <br>
+                        email: String <br>
+                        }
+                    </td>
+                    <td>
+                        {<br>
+                        success: Boolean,<br>
+                        msg: String <br>
+                        }
+                    </td>
+                </tr>
+                <tr class="table-success">
+                    <td>
+                        Register user
+                    </td>
+                    <td>
+                        POST <br> /api/register
+                    </td>
+                    <td>
+                        { <br>
+                        user_id: Number, <br>
+                        first_name: String, <br>
+                        last_name: String, <br>
+                        email: String, <br>
+                        password: String, <br>
+                        city: String, <br>
+                        street: String <br>
+                        }
+                    </td>
+                    <td>
+                        {<br>
+                        success: Boolean,<br>
+                        msg: String <br>
+                        }
+                    </td>
+                </tr>
+                <tr class="table-success">
+                    <td>
+                        Login user. <br>
+                        Check if user exists or user is admin. <br>
+                        Check if user have active/obsolete cart.
+                    </td>
+                    <td>
+                        POST <br> /api/login
+                    </td>
+                    <td>
+                        { <br>
+                        email: String, <br>
+                        password: String <br>
+                        }
+                    </td>
+                    <td>
+                        <strong>Cases: </strong> <br>
+                        Admin: <br>
+                        {<br>
+                        success: Boolean,<br>
+                        msg: String <br>
+                        } <br><br>
+                        New user / User have active cart / User have obsolete cart: <br>
+                        {<br>
+                        success: Boolean,<br>
+                        msg: String, <br>
+                        data: { ** User data **<br>
+                        first_name: String, <br>
+                        last_name: String <br>
+                        }, <br>
+                        newCart: Boolean <br>
+                        }
+                    </td>
+                </tr>
+                <tr class="table-success">
+                    <td>
+                        Send cart_id and cart_products (active cart) to user.
+                    </td>
+                    <td>
+                        POST <br> /api/userCart
+                    </td>
+                    <td>
+                        { <br>
+                        user_id: Number <br>
+                        }
+                    </td>
+                    <td>
+                        {<br>
+                        cartProducts: [{ ** Cart products data ** <br>
+                        cart_product_id: Number, <br>
+                        sum_price: Number, <br>
+                        units: Number, <br>
+                        product_name: String <br>
+                        image: String <br>
+                        }, ...],<br>
+                        msg: String <br>
+                        }
+                    </td>
+                </tr>
+                <tr class="table-primary">
+                    <td>
+                        Send categories and products data to user
+                    </td>
+                    <td>
+                        GET <br> /api/products
+                    </td>
+                    <td>
+                        None
+                    </td>
+                    <td>
+                        {<br>
+                        success: Boolean,<br>
+                        categoriesData: [{ ** Categories Data ** <br>
+                        id: Number, <br>
+                        category_name: String <br>
+                        }, ...], <br>
+                        productsData: [{ ** Products Data ** <br>
+                        id: Number, <br>
+                        product_name: String, <br>
+                        category_id: Number, <br>
+                        price: Number, <br>
+                        image: String, <br>
+                        time_updated: Date <br>
+                        }, ...], <br>
+                        }
+                    </td>
+                </tr>
+                <tr class="table-success">
+                    <td>
+                        <strong>For admin: </strong> <br>
+                        Insert new / Update product to data base.
+                    </td>
+                    <td>
+                        POST <br> /api/products
+                    </td>
+                    <td>
+                        { <br>
+                        id: Number, <br>
+                        category_id: Number, <br>
+                        image: String, <br>
+                        price: Number, <br>
+                        product_name: String, <br>
+                        isNew: Boolean <br>
+                        }
+                    </td>
+                    <td>
+                        <strong>Cases:</strong> <br>
+                        New product: <br>
+                        {<br>
+                        success: Boolean,<br>
+                        product_id: Number <br>
+                        } <br><br>
+                        Updated product: <br>
+                        {<br>
+                        success: Boolean<br>
+                        }
+                    </td>
+                </tr>
+                <tr class="table-success">
+                    <td>
+                        Insert product_id to cart_products in data base.
+                    </td>
+                    <td>
+                        POST <br> /api/productToCart
+                    </td>
+                    <td>
+                        { <br>
+                        product_id_fk: Number, <br>
+                        units: Number <br>
+                        }
+                    </td>
+                    <td>
+                        {<br>
+                        success: Boolean,<br>
+                        cart_product_id: Number,<br>
+                        real_sum_price: Number<br>
+                        }
+                    </td>
+                </tr>
+                <tr class="table-success">
+                    <td>
+                        Delete selected product from cart_products in data base.
+                    </td>
+                    <td>
+                        POST <br> /api/deleteProductFromCart
+                    </td>
+                    <td>
+                        { <br>
+                        cart_product_id: Number <br>
+                        }
+                    </td>
+                    <td>
+                        {<br>
+                        success: Boolean<br>
+                        }
+                    </td>
+                </tr>
+                <tr class="table-success">
+                    <td>
+                        Delete all products (by cart_id) from cart_products in data base.
+                    </td>
+                    <td>
+                        POST <br> /api/deleteAllProductFromCart
+                    </td>
+                    <td>
+                        none
+                    </td>
+                    <td>
+                        {<br>
+                        success: Boolean<br>
+                        }
+                    </td>
+                </tr>
+                <tr class="table-primary">
+                    <td>
+                        Send unavailable shipping dates array.
+                    </td>
+                    <td>
+                        GET <br> /api/unavailableDates
+                    </td>
+                    <td>
+                        None
+                    </td>
+                    <td>
+                        {<br>
+                        success: Boolean,<br>
+                        unavailableDates: [Date, ...] <br>
+                        }
+                    </td>
+                </tr>
+                <tr class="table-success">
+                    <td>
+                        Insert user order to data base. <br>
+                        Update user cart to obsolete.
+                    </td>
+                    <td>
+                        POST <br> /api/order
+                    </td>
+                    <td>
+                        { <br>
+                        order_city: String, <br>
+                        order_street: String, <br>
+                        shipping_date: Date <br>
+                        }
+                    </td>
+                    <td>
+                        {<br>
+                        success: Boolean,<br>
+                        msg: String<br>
+                        }
+                    </td>
+                </tr>
+                <tr class="table-primary">
+                    <td>
+                        Verify user order complete.
+                    </td>
+                    <td>
+                        GET <br> /api/auth/conclusion
+                    </td>
+                    <td>
+                        None
+                    </td>
+                    <td>
+                        {<br>
+                        success: Boolean,<br>
+                        msg: String <br>
+                        }
+                    </td>
+                </tr>
+                <tr class="table-primary">
+                    <td>
+                        Download receipt txt file to user.
+                    </td>
+                    <td>
+                        GET <br> /api/receipt
+                    </td>
+                    <td>
+                        None
+                    </td>
+                    <td>
+                        {<br>
+                        blob: Number,<br>
+                        type: 'string',<br>
+                        }
+                    </td>
+                </tr>
+                <tr class="table-success">
+                    <td>
+                        Delete receipt. <br>
+                    </td>
+                    <td>
+                        POST <br> /api/receipt
+                    </td>
+                    <td>
+                        None
+                    </td>
+                    <td>
+                        {<br>
+                        success: Boolean,<br>
+                        msg: String<br>
+                        }
+                    </td>
+                </tr>
+                <tr class="table-success">
+                    <td>
+                        <strong>For admin: </strong> <br>
+                        Upload image to folder. <br>
+                    </td>
+                    <td>
+                        POST <br> /api/images
+                    </td>
+                    <td>
+                        None
+                    </td>
+                    <td>
+                        {<br>
+                        success: Boolean,<br>
+                        fileName: String<br>
+                        }
+                    </td>
+                </tr>
+                <tr class="table-success">
+                    <td>
+                        <strong>For admin: </strong> <br>
+                        Delete obsolete image from folder. <br>
+                        Update new image to folder.
+                    </td>
+                    <td>
+                        POST <br> /api/imageUpdateDelete
+                    </td>
+                    <td>
+                        {<br>
+                        isNew: Boolean,<br>
+                        lastImage: String,<br>
+                        newImage: String,<br>
+                        id: Number,<br>
+                        }
+                    </td>
+                    <td>
+                        {<br>
+                        success: Boolean,<br>
+                        msg: String<br>
+                        }
+                    </td>
+                </tr>
+                <tr class="table-primary">
+                    <td>
+                        Send apiDoc.html (this document). <br>
+                        Path: http://localhost:3000/shopping/api.
+                    </td>
+                    <td>
+                        GET <br> /shopping/api
+                    </td>
+                    <td>
+                        None
+                    </td>
+                    <td>
+                        apiDoc.html
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

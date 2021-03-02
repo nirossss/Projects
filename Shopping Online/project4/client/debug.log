@@ -1,0 +1,7 @@
+[1101/135657.200:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1102/152319.863:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1105/181704.593:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1105/181704.596:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\nirel\AppData\Local\AVAST Software\Browser\User Data\Crashpad\attachments\6dbc6925-ae8e-4c89-a050-b11ef395f0c1: The system cannot find the path specified. (0x3)
+[1108/021048.298:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1110/031343.518:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1114/094110.581:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)

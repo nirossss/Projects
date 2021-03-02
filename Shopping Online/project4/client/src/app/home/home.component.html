@@ -1,0 +1,69 @@
+<header>
+    <p class="contactUs">
+        Contact us: nirel@fakemail.com
+    </p>
+    <p class="helloGuest">
+        <strong>Hello {{userData.first_name? userData.first_name + ' ' + userData.last_name : 'Guest'}}</strong>
+    </p>
+</header>
+<!-- End of home page header -->
+<div class="container">
+    <div class="panel ">
+        <div *ngIf="!isLogin" class="loginDiv">
+            <form>
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>Login</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content align="center">
+                        <div>
+                            <mat-form-field class="loginInput">
+                                <mat-label>Email</mat-label>
+                                <input #loginEmail type="email" matInput placeholder="example@example.com">
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field class="loginInput">
+                                <mat-label>Password</mat-label>
+                                <input #loginpassword type="password" matInput>
+                            </mat-form-field>
+                        </div>
+                        <div *ngIf="!isLogin && errorObj.isError" class="errorDiv">
+                            <p>{{errorObj.errorMsg}}</p>
+                        </div>
+                    </mat-card-content>
+                    <mat-card-actions class="cardAction">
+                        <button type="submit" mat-raised-button
+                            (click)="connectAccount($event, loginEmail.value, loginpassword.value)">Login
+                        </button>
+                        <a mat-button color="primary" routerLink="/register" routerLinkActive="active">register</a>
+                    </mat-card-actions>
+                </mat-card>
+            </form>
+        </div>
+        <!-- End of login div -->
+        <button mat-raised-button color="accent" *ngIf="isLogin" class="goShoppingButton"
+            (click)="goShopping()">{{userStatus.isNewCart? 'Start' : 'Resume'}} Shopping
+        </button>
+    </div>
+    <!-- End of panel A -->
+    <div class="panel panelB">
+        <div class="mat-display-1">Welcome to WiStore</div>
+        <h4>Variety of products</h4>
+        <h4>Comfortable shipping method</h4>
+        <h4>Safe purchase</h4>
+    </div>
+    <!-- End of panel B -->
+    <div class="panel ">
+        <div class="panelCImage">
+            <img src="http://localhost:3000/api/images/homePanelC.jpg">
+        </div>
+        <p><strong>Orders placed: </strong> {{homeStats.orders_placed}}</p>
+        <p><strong>Available products: </strong> {{homeStats.available_products}}</p>
+        <div *ngIf="isLogin" class="userCartStatusMsg">
+            <p>{{userStatus.msg}}</p>
+        </div>
+    </div>
+    <!-- End of panel C -->
+</div>
+<!-- End of home page container -->

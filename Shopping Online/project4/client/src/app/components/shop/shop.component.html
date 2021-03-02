@@ -1,0 +1,174 @@
+<div class="shopContainer">
+    <div [style.width]="cartWidth" class="userCart">
+        <h5><strong>Hello</strong> {{userData.first_name + ' ' + userData.last_name}}</h5>
+        <div class="cartNav">
+            <div>
+                <a mat-icon-button color="primary" title="Back to home page" routerLink="/home"
+                    routerLinkActive="active">
+                    <mat-icon>home</mat-icon>
+                </a>
+            </div>
+            <div>
+                <button mat-icon-button title="Minimize cart view" *ngIf="isFullCartView"
+                    (click)="isFullCartView= false">
+                    <mat-icon>close_fullscreen</mat-icon>
+                </button>
+                <button mat-icon-button title="Full cart view" *ngIf="!isFullCartView" (click)="isFullCartView= true">
+                    <mat-icon>open_in_full</mat-icon>
+                </button>
+            </div>
+            <div>
+                <button mat-icon-button title="Expand view size" *ngIf="isSmallView"
+                    (click)="cartWidth='28%'; isSmallView=!isSmallView">
+                    <mat-icon>swap_horiz</mat-icon>
+                </button>
+                <button mat-icon-button title="Reduce view size" *ngIf="!isSmallView"
+                    (click)="cartWidth='14%'; isSmallView=!isSmallView">
+                    <mat-icon>compare_arrows</mat-icon>
+                </button>
+            </div>
+        </div>
+        <mat-divider></mat-divider>
+        <!-- End of cart nav header -->
+        <button *ngIf="isOrder" mat-icon-button color="accent" title="Back to shop" (click)="changeToShopingView()">
+            <mat-icon>store</mat-icon>
+        </button>
+        <mat-divider></mat-divider>
+        <div *ngIf="isFullCartView" class="productsInCart">
+            <input #searchProductO (keyup)="searchProductOrder(searchProductO.value)" *ngIf="isOrder" type="text"
+                placeholder="Search product" matInput>
+            <mat-divider></mat-divider>
+            <!-- End of searched products (for order view only) -->
+            <mat-list>
+                <mat-list-item *ngFor="let cp of cartProducts;">
+                    <mat-icon matListIcon>shopping_bag</mat-icon>
+                    <h3 matLine>
+                        *{{cp.units}} <strong><span [class.markProduct]="cp.isMarked">{{cp.product_name}}
+                            </span></strong> {{cp.sum_price | currency}}
+                        <button mat-icon-button title="Remove product from cart" *ngIf="!isOrder"
+                            (click)="deleteProductFromCart(cp.cart_product_id)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </h3>
+                    <div matLine class="productImageCart">
+                        <img src="http://localhost:3000/api/images/{{cp.image}}">
+                    </div>
+                </mat-list-item>
+            </mat-list>
+        </div>
+        <!-- End of cart products list -->
+        <div class="bottomCart">
+            <div class="totalPrice">
+                <strong> Total price: </strong> {{totalPrice | currency}}
+            </div>
+            <button mat-icon-button color="warn" title="Delete All products from cart" *ngIf="!isOrder"
+                (click)="deleteAllProductFromCart()">
+                <mat-icon>delete_sweep</mat-icon>
+            </button>
+            <button mat-stroked-button color="primary" *ngIf="!isOrder" (click)="isOrder = true">Order</button>
+        </div>
+        <!-- End of cart bottom div -->
+    </div>
+    <!-- End of user cart view-->
+    <div *ngIf="!isOrder" class="productsContainer">
+        <div class="categories">
+            <ul>
+                <li>
+                    <button mat-stroked-button (click)="showAllProducts()">All products</button>
+                </li>
+                <li *ngFor="let category of categories;">
+                    <button mat-stroked-button
+                        (click)="filterProductsByCategory(category.id, category.category_name)">{{category.category_name}}
+                    </button>
+                </li>
+            </ul>
+        </div>
+        <!-- End of category nav -->
+        <form>
+            <div>
+                <mat-form-field>
+                    <mat-label>Search product</mat-label>
+                    <input #searchP type="text" matInput>
+                </mat-form-field>
+                <button mat-icon-button (click)="showSearchedProduct($event,searchP.value)" type="submit">
+                    <mat-icon>search</mat-icon>
+                </button>
+            </div>
+        </form>
+        <!-- End of search product in shop form -->
+        <div class="productsCategoryTitle">
+            <h2>{{chosenCategory}}</h2>
+        </div>
+        <mat-divider></mat-divider>
+        <!-- End of products category title -->
+        <app-shop-products-list [filteredProducts]="filteredProducts"
+            (newProductToCartEvent)="pushProductToCart($event)">
+        </app-shop-products-list>
+        <!-- End of products grid list -->
+    </div>
+    <!-- End of shop view -->
+    <div *ngIf="isOrder" class="orderContainer">
+        <form>
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>
+                        <strong>Order details:</strong>
+                        <mat-divider></mat-divider>
+                    </mat-card-title>
+                </mat-card-header>
+                <!-- End of order card header -->
+                <mat-card-content align="center">
+                    <h2>Shipping Details:</h2>
+                    <div class="citySelect" (dblclick)="userDetailByDblClick('city')">
+                        <mat-form-field class="orderInput">
+                            <mat-label>City</mat-label>
+                            <select matNativeControl name="city" [(ngModel)]="orderData.city" value="orderData.city">
+                                <option *ngFor="let city of citiesIsrael;" [value]="city">
+                                    {{city}}
+                                </option>
+                            </select>
+                        </mat-form-field>
+                    </div>
+                    <div class="streetInput" (dblclick)="userDetailByDblClick('street')">
+                        <mat-form-field class="orderInput">
+                            <mat-label>Street</mat-label>
+                            <input matInput name="street" [(ngModel)]="orderData.street" value="orderData.street"
+                                type="text" placeholder="Street">
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field>
+                            <mat-label>Shipping date</mat-label>
+                            <input matInput name="shipping_date" [matDatepicker]="myDatePicker" [min]="todayDate"
+                                [matDatepickerFilter]="dateFilter" [(ngModel)]="orderData.shipping_date"
+                                placeholder="MM/DD/YYYY">
+                            <mat-datepicker-toggle [for]="myDatePicker" matSuffix></mat-datepicker-toggle>
+                            <mat-datepicker #myDatePicker></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    <h2>Payments:</h2>
+                    <div>
+                        <mat-form-field class="orderInput">
+                            <mat-label>Credit card</mat-label>
+                            <input type="number" name="creditCard" placeholder="Credit card number"
+                                [(ngModel)]="orderData.creditCard" matInput>
+                            <mat-hint>
+                                We only accept Visa card numbers (** 4 x x x x x x x x x x x x x x x ** x = Number)
+                            </mat-hint>
+                        </mat-form-field>
+                    </div>
+                    <div *ngIf="orderErrorObj.isError" class="errorDiv">
+                        <p>{{orderErrorObj.errorMsg}}</p>
+                    </div>
+                </mat-card-content>
+                <!-- End of order card body -->
+                <mat-card-actions class="cardAction">
+                    <button type="submit" mat-raised-button (click)="createNewOrder($event)">Order</button>
+                </mat-card-actions>
+                <!-- End of order card action footer -->
+            </mat-card>
+        </form>
+    </div>
+    <!-- End of Order view -->
+</div>
+<!-- End of shop container -->

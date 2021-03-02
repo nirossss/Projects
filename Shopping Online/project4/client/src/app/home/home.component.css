@@ -1,0 +1,71 @@
+header {
+    text-align: right;
+    margin: 10px;
+}
+
+.contactUs{
+    display: inline;
+    padding: 3px;
+    border: 1px solid #e6e4e4;
+    border-radius: 3%;
+}
+
+.helloGuest{
+    padding: 3px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.panel {
+    margin: 10px;
+    width: 33%;
+    height: 500px;
+    text-align: center;
+}
+
+.panelB{
+    padding-top: 10px;
+    background-image: url('http://localhost:3000/api/images/homePanelB.jpg' );
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    text-align: right;
+    text-shadow: 2px 1px rgb(211, 211, 211);
+}
+
+.panelCImage img{
+    width: 100%;
+    height: 350px;
+}
+
+.loginInput{
+    width: 85%;
+}
+
+.cardAction{
+    display: flex;
+    justify-content: space-between;
+}
+
+.goShoppingButton{
+    width: 100%;
+    height: 50%;
+    font-size: xx-large;
+}
+
+.userCartStatusMsg {
+    color: gold;
+}
+
+.errorDiv{
+    display: inline-block;
+    margin-top: 8px;
+    width: 75%;
+    padding-top: 8px;
+    border: 1px solid #e94747;
+    border-radius: 2px;
+    align-self: center;
+}

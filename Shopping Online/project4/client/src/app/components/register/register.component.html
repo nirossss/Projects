@@ -1,0 +1,105 @@
+<h2>Registeration</h2>
+<mat-divider></mat-divider>
+<a mat-button color="primary" routerLink="/home" routerLinkActive="active">Back to home page</a>
+
+<div class="registerationContainer">
+    <div *ngIf="!isFirstStep" class="registerCard firstStep">
+        <form>
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title><strong>Step:</strong> 1/2</mat-card-title>
+                </mat-card-header>
+                <mat-card-content align="center">
+                    <div>
+                        <mat-form-field class="registerInput">
+                            <mat-label>ID</mat-label>
+                            <input name="user_id" [(ngModel)]="registrationData.user_id" type="number" matInput
+                                placeholder="Your ID number">
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field class="registerInput">
+                            <mat-label>Email</mat-label>
+                            <input name="email" [(ngModel)]="registrationData.email" type="email" matInput
+                                placeholder="example@example.com">
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field class="registerInput">
+                            <mat-label>Password</mat-label>
+                            <input name="password" [(ngModel)]="registrationData.password" type="password" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field class="registerInput">
+                            <mat-label>Password Validation</mat-label>
+                            <input name="pass_validation" [(ngModel)]="passwordV" type="password" matInput>
+                            <mat-hint>Repeat password</mat-hint>
+                        </mat-form-field>
+                    </div>
+                    <div *ngIf="errorObj.isError" class="errorDiv">
+                        <p>{{errorObj.errorMsg}}</p>
+                    </div>
+                </mat-card-content>
+                <mat-card-actions class="cardAction">
+                    <button type="submit" mat-raised-button (click)="firstStepValidation($event)" title="To next step">
+                        <mat-icon>forward</mat-icon>
+                    </button>
+                </mat-card-actions>
+            </mat-card>
+        </form>
+    </div>
+    <!-- End of first step -->
+    <div *ngIf="isFirstStep" class="registerCard secondStep">
+        <form>
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title><strong>Step:</strong> 2/2</mat-card-title>
+                    <button mat-raised-button color="primary" (click)="isFirstStep = false">
+                        Back to 1st step
+                    </button>
+                </mat-card-header>
+                <mat-card-content align="center">
+                    <div>
+                        <mat-form-field class="registerInput">
+                            <mat-label>City</mat-label>
+                            <select matNativeControl name="city" [(ngModel)]="registrationData.city">
+                                <option *ngFor="let city of citiesIsrael; trackBy:trackById; index as i" [value]="city">
+                                    {{city}}
+                                </option>
+                            </select>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field class="registerInput">
+                            <mat-label>Street</mat-label>
+                            <input name="street" [(ngModel)]="registrationData.street" type="text" matInput
+                                placeholder="Street">
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field class="registerInput">
+                            <mat-label>First name</mat-label>
+                            <input name="first_name" [(ngModel)]="registrationData.first_name" type="text"
+                                placeholder="First name" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field class="registerInput">
+                            <mat-label>Last name</mat-label>
+                            <input name="last_name" [(ngModel)]="registrationData.last_name" type="text"
+                                placeholder="Last name" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div *ngIf="errorObj.isError" class="errorDiv">
+                        <p>{{errorObj.errorMsg}}</p>
+                    </div>
+                </mat-card-content>
+                <mat-card-actions class="cardAction">
+                    <button mat-raised-button type="submit" (click)="submitRegistration($event)">Submit</button>
+                </mat-card-actions>
+            </mat-card>
+        </form>
+    </div>
+    <!-- End of second step -->
+</div>

@@ -1,0 +1,40 @@
+Hello world!!
+
+GET STARTED:
+    1- Install server dependencies (cmd in vacation-302761580 folder)
+    2- In your mySql: import vacationProject.sql scheme from mySqlScheme folder
+    3- Set your user details in dbConnection.js
+    4- Install react dependencies (cmd in client folder)
+    5- nodemon server.js (cmd in vacation-302761580 folder)
+    6- npm start (cmd in client folder)
+    7- gl, hf :)
+
+ADMIN:
+    Email: a@a.a, Password: 1234
+
+USERS:
+    1- Email: b@b.b, Password: 123
+    2- Email: c@c.c, Password: 123
+    3- Email: n@n.n, Password: 123 (html selector input security Test)
+    4- Email: x@x.x, Password: 123 (html selector input security Test)
+
+NPM INSTALL USED:
+    SERVER (cmd in vacation-302761580 folder):
+        1- express
+        2- mysql
+        3- express-session
+        4- bcrypt
+        5- socket.io
+        6- multer
+        7- uuid
+    
+    CLIENT (cmd in client folder):
+        1- npx create-react-app
+        2- react-router-dom
+        3- socket.io-client
+        4- chart.js
+        5- react-chartjs-2
+        6- @fortawesome/fontawesome-svg-core
+        7- @fortawesome/free-solid-svg-icons
+        8- @fortawesome/free-regular-svg-icons
+        9- @fortawesome/react-fontawesome

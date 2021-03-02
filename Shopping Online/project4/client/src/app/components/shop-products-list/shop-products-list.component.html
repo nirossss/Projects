@@ -1,0 +1,32 @@
+<div class="products">
+    <mat-grid-list cols="5" rowHeight="100px">
+        <mat-grid-tile *ngFor="let product of filteredProducts;">
+            <div class="productImage">
+                <img src="http://localhost:3000/api/images/{{product.image}}">
+            </div>
+            <div>
+                <strong>
+                    {{product.product_name}}
+                </strong> <br> {{product.price | currency}}
+            </div>
+            <div>
+                <button mat-icon-button title="Add to {{product.product_name}} cart" (click)="openUnitsPopup(product)">
+                    <mat-icon>add_shopping_cart</mat-icon>
+                </button>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>
+<!-- End of Products grid list -->
+<div *ngIf="isPopup" class="popupWrapper">
+    <div class="popup">
+        <mat-form-field>
+            <mat-label>Units</mat-label>
+            <input #units type="number" value="1" matInput>
+            <mat-hint>Must be a natural number **(Else will be modified automaticaly)</mat-hint>
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="pushProductToCart(units.value)">Save</button>
+        <button mat-stroked-button color="warn" (click)="isPopup = false">Cancel</button>
+    </div>
+</div>
+<!-- End of Popup wrapper -->

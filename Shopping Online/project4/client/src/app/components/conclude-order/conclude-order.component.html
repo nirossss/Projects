@@ -1,0 +1,14 @@
+<div *ngIf="isOrder" class="concludeContainer">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title><strong>Your order complete.</strong></mat-card-title>
+        </mat-card-header>
+        <mat-card-content align="center">
+            <h3>Thank you for using WiStore App.</h3>
+        </mat-card-content>
+        <mat-card-actions class="cardAction">
+            <button mat-raised-button color="primary" (click)="downloadReceipt()">Download receipt</button>
+            <a mat-stroked-button color="primary" routerLink="/home" routerLinkActive="active">Got it.</a>
+        </mat-card-actions>
+    </mat-card>
+</div>

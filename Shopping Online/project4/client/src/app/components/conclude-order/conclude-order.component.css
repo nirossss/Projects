@@ -1,0 +1,14 @@
+.concludeContainer{
+    display: flex;
+    justify-content: center;
+}
+
+mat-card {
+    width: 30%;
+    margin-top: 8rem;
+}
+
+.cardAction{
+    display: flex;
+    justify-content: space-evenly;
+}

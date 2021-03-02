@@ -1,0 +1,9 @@
+.imageContent {
+    max-height: 100px;
+}
+
+textarea {
+    overflow-y: scroll;
+    height: 100px;
+    resize: none;
+}

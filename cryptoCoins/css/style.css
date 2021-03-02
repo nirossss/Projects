@@ -1,0 +1,100 @@
+.header{
+    margin:0 auto;
+    height: auto;
+    text-align: center;
+    /* The image used parallax */
+    background-image: url("../img/istockphoto-471876048-1024x1024.jpg");
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+h1{
+    text-align: right;
+    text-shadow: 1px 1px 2px white, 0 0 25px olivedrab, 0 0 5px whitesmoke;
+}
+#clear {
+    clear: both;
+}
+.nav-link{
+    font-size: large;
+}
+#phoneNav{
+    text-align: center;
+    display: none;
+}
+#switchCards{
+    display: none;
+    width:60%;
+    position: fixed;
+    z-index: 10000;
+    bottom: 13%;
+    right: 17%;
+}
+#switchCards .card-body{
+    display: none;
+}
+#wait{
+    /* show loading div, controled by js*/
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    top: 23%;
+    right: 43%;
+}
+@media only screen and (max-width: 1000px){
+    #switchCards{
+        display: none;
+        width:94%;
+        position: fixed;
+        z-index: 10000;
+        bottom: 27%;
+        right: 3%;
+    }
+    #switchCards .card-body{
+        display: none;
+    }
+    #wait{
+        /* show loading div, controled by js*/
+        display: none;
+        position: fixed;
+        z-index: 10000;
+        top: 18%;
+        left: 43%;
+    }
+}
+@media only screen and (max-width: 600px) {
+    #largeNav{
+        display: none;
+    }
+    #phoneNav{
+        display: inline-block;
+    }
+    h1{
+        text-align: center;
+    }
+    #wait{
+        /* show loading div, controled by js*/
+        display: none;
+        position: fixed;
+        z-index: 10000;
+        top: 20%;
+        left: 23%;
+    }
+    #switchCards{
+        display: none;
+        width:68%;
+        position: fixed;
+        z-index: 10000;
+        bottom: 15%;
+        right: 17%;
+    }
+    #switchCards .card-body{
+        display: none;
+    }
+}
+.cardHeader{
+    height: 20px;
+}
+

@@ -1,0 +1,35 @@
+.cardDecription {
+    overflow-y: auto;
+    height: 60px;
+}
+
+.starIcon{
+    color: gold;
+}
+
+.iconContainer{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.iconTooltip{
+    display: none;
+    text-align: center;
+    width: 75px;
+    height: 25px;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+    background-color: rgb(235, 235, 235);
+    border: solid #efefef 1px;
+    border-radius: 35%;
+    z-index: 1;
+}
+
+.iconContainer:hover .iconTooltip{
+    display: block;
+    bottom: 35px;
+    position: absolute;
+}

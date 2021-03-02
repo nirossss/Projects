@@ -1,0 +1,71 @@
+.adminContainer {
+    display: flex;
+    justify-content: space-around;
+}
+
+.editContainer {
+    width: 25%;
+    height: auto;
+    position: relative;
+}
+
+.productsContainer{
+    width: 70%;
+    height: auto;
+    padding: 5px;
+    min-height: 300px;
+    max-height: 500px;
+    border: 1px solid rgb(184, 184, 184);
+    border-radius: 3px;
+    overflow-y: auto;
+}
+
+.productsContainer form{
+    margin: 5px;
+}
+
+.categories ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.categories ul li{
+    float: left;
+}
+
+.categories button:focus{
+    color: blue;
+}
+
+.productsCategoryTitle{
+    text-align: center;
+}
+
+.productImage img{
+    margin-right: 5px;
+    width: 60px;
+    height: 71px;
+}
+
+.editInput{
+    width: 75%;
+}
+
+.cardAction{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.errorDiv{
+    display: inline-block;
+    margin-top: 8px;
+    width: 75%;
+    padding-top: 8px;
+    border: 1px solid #e94747;
+    border-radius: 2px;
+    align-self: center;
+}

@@ -1,0 +1,120 @@
+<div class="adminContainer">
+    <div class="editContainer">
+        <form>
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>
+                        <strong>hello </strong> {{userData.first_name + ' ' + userData.last_name}}
+                    </mat-card-title>
+                </mat-card-header>
+                <button mat-icon-button color="primary" title="Back to home page" (click)="backHomeAndImgCheck()">
+                    <mat-icon>home</mat-icon>
+                </button>
+                <button mat-icon-button *ngIf="!isEdit" (click)="openEditFormNew()">
+                    <mat-icon>add</mat-icon>
+                </button>
+                <!-- End of edit card header -->
+                <mat-card-content align="center" *ngIf="isEdit">
+                    <div>
+                        <mat-form-field class="editInput">
+                            <mat-label>Category</mat-label>
+                            <select matNativeControl name="categoryPick" [(ngModel)]="editProductForm.category_id"
+                                value="Choose category">
+                                <option *ngFor="let category of categories;" [value]="category.id">
+                                    {{category.category_name}}
+                                </option>
+                            </select>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field class="editInput">
+                            <mat-label>Price</mat-label>
+                            <input type="number" name="pricePick" [(ngModel)]="editProductForm.price"
+                                placeholder="price" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field class="editInput">
+                            <mat-label>Product name</mat-label>
+                            <input type="text" name="productNamePick" [(ngModel)]="editProductForm.product_name"
+                                placeholder="Product name" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div *ngIf="!editProductForm.isNew">
+                        <small>*** Upload image to existing product will be saved automatically</small>
+                    </div>
+                    <div class="productImage" *ngIf="editProductForm.image.length">
+                        <img src="http://localhost:3000/api/images/{{editProductForm.image}}">
+                    </div>
+                    <strong>Upload image: </strong>
+                    <input type="file" name="image" (change)="handleImageUpload($event.target.files)">
+                    <div *ngIf="adminErrorObj.isError" class="errorDiv">
+                        <p>{{adminErrorObj.errorMsg}}</p>
+                    </div>
+                </mat-card-content>
+                <!-- End of edit card content (form) -->
+                <mat-card-actions *ngIf="isEdit" class="cardAction">
+                    <button mat-raised-button color="primary" type="submit"
+                        (click)="handleEditedProductSubmit($event)">Save
+                    </button>
+                    <button mat-stroked-button color="warn" *ngIf="editProductForm.isNew" (click)="closeForm()">
+                        Close
+                    </button>
+                </mat-card-actions>
+            </mat-card>
+        </form>
+    </div>
+    <!-- End of edit container -->
+    <div class="productsContainer">
+        <div class="categories">
+            <ul>
+                <li>
+                    <button mat-stroked-button (click)="showAllProducts()">All products</button>
+                </li>
+                <li *ngFor="let category of categories;">
+                    <button mat-stroked-button
+                        (click)="filterProductsByCategory(category.id, category.category_name)">{{category.category_name}}</button>
+                </li>
+            </ul>
+        </div>
+        <!-- End of category nav -->
+        <form>
+            <div>
+                <mat-form-field>
+                    <mat-label>Search product</mat-label>
+                    <input #searchP type="text" matInput>
+                </mat-form-field>
+                <button mat-icon-button (click)="showSearchedProduct($event,searchP.value)" type="submit">
+                    <mat-icon>search</mat-icon>
+                </button>
+            </div>
+        </form>
+        <!-- End of search product in shop form -->
+        <div class="productsCategoryTitle">
+            <h2>{{chosenCategory}}</h2>
+        </div>
+        <mat-divider></mat-divider>
+        <!-- End of products category title -->
+        <div class="products">
+            <mat-grid-list cols="5" rowHeight="100px">
+                <mat-grid-tile *ngFor="let product of filteredProducts;">
+                    <div class="productImage">
+                        <img src="http://localhost:3000/api/images/{{product.image}}">
+                    </div>
+                    <div>
+                        <strong>
+                            {{product.product_name}}
+                        </strong> <br> {{product.price | currency}}
+                    </div>
+                    <div>
+                        <button mat-icon-button title="Edit {{product.product_name}}" *ngIf="!isEdit"
+                            (click)="openEditFormUpdate(product)">
+                            <mat-icon>create</mat-icon>
+                        </button>
+                    </div>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </div>
+    </div>
+    <!-- End of products container -->
+</div>

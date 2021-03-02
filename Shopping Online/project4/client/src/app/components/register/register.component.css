@@ -1,0 +1,26 @@
+h2 {
+    text-align: center;
+}
+
+.registerationContainer{
+    display: flex;
+    justify-content: center;
+}
+
+.registerCard{
+    width: 60%;
+}
+
+.registerInput{
+    width: 75%;
+}
+
+.errorDiv{
+    display: inline-block;
+    margin-top: 8px;
+    width: 75%;
+    padding-top: 8px;
+    border: 1px solid #e94747;
+    border-radius: 2px;
+    align-self: center;
+}
